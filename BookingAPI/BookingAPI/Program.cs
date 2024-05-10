@@ -6,6 +6,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BookingConnectionString"));
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
