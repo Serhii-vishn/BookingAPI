@@ -7,7 +7,7 @@
         public DateOnly DateEnd { get; set; }
 
         public int UserId { get; set; }
-        public UserEntity User { get; set; } = null!;
+        public ClientEntity User { get; set; } = null!;
 
         public int AccommodationId { get; set; }
         public AccommodationEntity Accommodation { get; set; } = null!;

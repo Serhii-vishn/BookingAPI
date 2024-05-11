@@ -31,7 +31,7 @@ namespace BookingAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Clients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -46,7 +46,7 @@ namespace BookingAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,9 +70,9 @@ namespace BookingAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Bookings_Users_UserId",
+                        name: "FK_Bookings_Clients_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -98,9 +98,9 @@ namespace BookingAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reviews_Users_UserId",
+                        name: "FK_Reviews_Clients_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -128,6 +128,18 @@ namespace BookingAPI.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clients_LastName_FirstName_DateOfBirth",
+                table: "Clients",
+                columns: new[] { "LastName", "FirstName", "DateOfBirth" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_PhoneNumber",
+                table: "Clients",
+                column: "PhoneNumber",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_BookingId",
                 table: "Reviews",
                 column: "BookingId");
@@ -136,18 +148,6 @@ namespace BookingAPI.Migrations
                 name: "IX_Reviews_UserId",
                 table: "Reviews",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_LastName_FirstName_DateOfBirth",
-                table: "Users",
-                columns: new[] { "LastName", "FirstName", "DateOfBirth" },
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_PhoneNumber",
-                table: "Users",
-                column: "PhoneNumber",
-                unique: true);
         }
 
         /// <inheritdoc />
@@ -163,7 +163,7 @@ namespace BookingAPI.Migrations
                 name: "Accommodations");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Clients");
         }
     }
 }

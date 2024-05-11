@@ -7,7 +7,7 @@
         public string? Comment { get; set; }
 
         public int UserId { get; set; }
-        public UserEntity User { get; set; } = null!;
+        public ClientEntity User { get; set; } = null!;
 
         public int BookingId { get; set; }
         public BookingEntity Booking { get; set; } = null!;
