@@ -5,6 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddTransient<IBookingRepository, BookingRepository>();
+
+builder.Services.AddTransient<IBookingService, BookingService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
