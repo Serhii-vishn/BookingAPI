@@ -7,7 +7,7 @@
         {
         }
 
-        public DbSet<ClientEntity> Users { get; set; }
+        public DbSet<ClientEntity> Clients { get; set; }
         public DbSet<AccommodationEntity> Accommodations { get; set;}
         public DbSet<BookingEntity> Bookings { get; set; }
         public DbSet<ReviewEntity> Reviews { get; set; }

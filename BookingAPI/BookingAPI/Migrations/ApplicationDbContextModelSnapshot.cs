@@ -84,20 +84,20 @@ namespace BookingAPI.Migrations
                     b.Property<int>("AccommodationId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<DateOnly>("DateEnd")
                         .HasColumnType("date");
 
                     b.Property<DateOnly>("DateStart")
                         .HasColumnType("date");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AccommodationId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Bookings", (string)null);
                 });
@@ -164,6 +164,9 @@ namespace BookingAPI.Migrations
                     b.Property<int>("BookingId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Comment")
                         .HasMaxLength(110)
                         .HasColumnType("nvarchar(110)");
@@ -171,14 +174,11 @@ namespace BookingAPI.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BookingId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Reviews", (string)null);
                 });
@@ -191,15 +191,15 @@ namespace BookingAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BookingAPI.Data.Entities.ClientEntity", "User")
+                    b.HasOne("BookingAPI.Data.Entities.ClientEntity", "Client")
                         .WithMany("Bookings")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Accommodation");
 
-                    b.Navigation("User");
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("BookingAPI.Data.Entities.ReviewEntity", b =>
@@ -210,15 +210,15 @@ namespace BookingAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BookingAPI.Data.Entities.ClientEntity", "User")
+                    b.HasOne("BookingAPI.Data.Entities.ClientEntity", "Client")
                         .WithMany("Reviews")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Booking");
 
-                    b.Navigation("User");
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("BookingAPI.Data.Entities.AccommodationEntity", b =>

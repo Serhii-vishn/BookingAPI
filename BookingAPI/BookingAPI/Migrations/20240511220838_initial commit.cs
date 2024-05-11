@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookingAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initialcommit : Migration
+    public partial class initialcommit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +57,7 @@ namespace BookingAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateStart = table.Column<DateOnly>(type: "date", nullable: false),
                     DateEnd = table.Column<DateOnly>(type: "date", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
                     AccommodationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -70,8 +70,8 @@ namespace BookingAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Bookings_Clients_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Bookings_Clients_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -85,7 +85,7 @@ namespace BookingAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<double>(type: "float", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(110)", maxLength: 110, nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
                     BookingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -98,8 +98,8 @@ namespace BookingAPI.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reviews_Clients_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Reviews_Clients_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -123,9 +123,9 @@ namespace BookingAPI.Migrations
                 column: "AccommodationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bookings_UserId",
+                name: "IX_Bookings_ClientId",
                 table: "Bookings",
-                column: "UserId");
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_LastName_FirstName_DateOfBirth",
@@ -145,9 +145,9 @@ namespace BookingAPI.Migrations
                 column: "BookingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_UserId",
+                name: "IX_Reviews_ClientId",
                 table: "Reviews",
-                column: "UserId");
+                column: "ClientId");
         }
 
         /// <inheritdoc />

@@ -38,8 +38,8 @@
                 .HasMaxLength(30);
 
             builder.HasMany(u => u.Bookings)
-                .WithOne(b => b.User)
-                .HasForeignKey(b => b.UserId)
+                .WithOne(b => b.Client)
+                .HasForeignKey(b => b.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasIndex(u => new { u.LastName, u.FirstName, u.DateOfBirth })

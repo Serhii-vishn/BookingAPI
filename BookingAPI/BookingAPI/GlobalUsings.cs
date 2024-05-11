@@ -10,3 +10,4 @@ global using BookingAPI.Repositories;
 global using BookingAPI.Repositories.Interfaces;
 global using BookingAPI.Services;
 global using BookingAPI.Services.Interfaces;
+global using BookingAPI.Models.DTO;

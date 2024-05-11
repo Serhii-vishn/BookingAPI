@@ -18,9 +18,9 @@
             builder.Property(r => r.Comment)
                 .HasMaxLength(110);
 
-            builder.HasOne(r => r.User)
+            builder.HasOne(r => r.Client)
                 .WithMany(u => u.Reviews)
-                .HasForeignKey(r => r.UserId)
+                .HasForeignKey(r => r.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(r => r.Booking) 

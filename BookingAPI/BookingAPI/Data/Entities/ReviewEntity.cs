@@ -6,8 +6,8 @@
         public double Rating { get; set; }
         public string? Comment { get; set; }
 
-        public int UserId { get; set; }
-        public ClientEntity User { get; set; } = null!;
+        public int ClientId { get; set; }
+        public ClientEntity Client { get; set; } = null!;
 
         public int BookingId { get; set; }
         public BookingEntity Booking { get; set; } = null!;
