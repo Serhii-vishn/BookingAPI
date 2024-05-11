@@ -3,6 +3,7 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.AspNetCore.Mvc;
 
 global using AutoMapper;
+global using BookingAPI.Exceptions;
 global using BookingAPI.Data;
 global using BookingAPI.Data.Entities;
 global using BookingAPI.Data.EntityConfigurations;

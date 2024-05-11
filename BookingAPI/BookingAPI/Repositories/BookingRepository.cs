@@ -19,8 +19,16 @@
         public async Task<IList<BookingEntity>> ListAsync()
         {
             return await _context.Bookings
-               .ToListAsync();
-        }   
+                .ToListAsync();
+        }
+
+        public async Task<IList<BookingEntity>> ListAllAsync()
+        {
+            return await _context.Bookings
+                .Include(c => c.Client)
+                .Include(c => c.Accommodation)
+                .ToListAsync();
+        }
 
         public async Task<int> AddAsync(BookingEntity booking)
         {
