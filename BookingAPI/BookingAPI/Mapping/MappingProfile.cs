@@ -12,7 +12,20 @@
                 .ForMember(dest => dest.AccommodationName, opt => opt.MapFrom(src => src.Accommodation.Name))
                 .ForMember(dest => dest.AccommodationType, opt => opt.MapFrom(src => src.Accommodation.AccommodationType));
 
+            CreateMap<ClientEntity, ClientDTO>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
+                .ReverseMap();
+
+            CreateMap<ClientEntity, ClientListDTO>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
+                .ReverseMap();
+
             CreateMap<AddClientRequest, ClientEntity>();
+
+            CreateMap<UpdateClientRequest, ClientEntity>();
+
+            CreateMap<AddClientRequest, UpdateClientRequest>()
+                .ReverseMap();
         }
     }
 }
