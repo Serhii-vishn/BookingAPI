@@ -1,59 +1,43 @@
 ﻿namespace BookingAPI.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class AccommodationRepository : IAccommodationRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public ClientRepository(ApplicationDbContext context)
+        public AccommodationRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ClientEntity?> GetAsync(int id)
+        public async Task<AccommodationEntity?> GetAsync(int id)
         {
-            return await _context.Clients
+            return await _context.Accommodations
                 .Where(a => a.Id == id)
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<ClientEntity?> GetAsync(string phoneNumber)
+        public async Task<AccommodationEntity?> GetAllAsync(int id)
         {
-            return await _context.Clients
-                 .Where(a => string.Equals(a.PhoneNumber, phoneNumber))
-                 .SingleOrDefaultAsync();
-        }
-
-        public async Task<ClientEntity?> GetAsync(string lastName, string firstName, DateOnly dateOfBirth)
-        {
-            return await _context.Clients
-                .Where(a => string.Equals(a.LastName, lastName))
-                .Where(a => string.Equals(a.FirstName, firstName))
-                .Where(a => a.DateOfBirth == dateOfBirth)
-                .SingleOrDefaultAsync();
-        }
-
-        public async Task<ClientEntity?> GetAllAsync(int id)
-        {
-            return await _context.Clients
+            return await _context.Accommodations
                  .Where(a => a.Id == id)
                  .Include(b => b.Bookings)
                  .Include(r => r.Reviews)
                  .SingleOrDefaultAsync();
         }
 
-        public async Task<IList<ClientEntity>> ListAsync()
+        public async Task<IList<AccommodationEntity>> ListAsync()
         {
-            return await _context.Clients
+            return await _context.Accommodations
                 .ToListAsync();
         }
 
-        public async Task<int> AddAsync(ClientEntity client)
+        public async Task<int> UpdateAsync(AccommodationEntity accommodation)
         {
             var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                var result = await _context.Clients.AddAsync(client);
+                var result = await _context.Accommodations.AddAsync(accommodation);
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 return result.Entity.Id;
@@ -65,16 +49,16 @@
             }
         }
 
-        public async Task<int> UpdateAsync(ClientEntity client)
+        public async Task<int> AddAsync(AccommodationEntity accommodation)
         {
             var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                _context.Entry(client).State = EntityState.Modified;
+                _context.Entry(accommodation).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
-                return client.Id;
+                return accommodation.Id;
             }
             catch
             {
@@ -99,6 +83,6 @@
                 await transaction.RollbackAsync();
                 throw;
             }
-        }
+        }     
     }
 }
