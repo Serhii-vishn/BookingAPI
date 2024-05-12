@@ -49,7 +49,6 @@
         /// Endpoint for retrieving a list of clients.
         /// </summary>
         /// <returns>ClientsListDTO, containing a list of clients with abbreviated information for the list.</returns>
-
         [HttpGet]
         [Route("/clients")]
         public async Task<ActionResult> GetClients()
