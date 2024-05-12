@@ -4,6 +4,12 @@
     {
         public MappingProfile()
         {
+            #region Review mappings
+            CreateMap<ReviewEntity, ReviewsListDTO>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => $"{src.Client.FirstName} {src.Client.LastName}"));
+            #endregion
+
+            #region Booking mappings
             CreateMap<BookingEntity, AddBookingRequest>()
                 .ReverseMap();
 
@@ -11,7 +17,9 @@
                 .ForMember(dest => dest.ClientFullName, opt => opt.MapFrom(src => $"{src.Client.FirstName} {src.Client.LastName}"))
                 .ForMember(dest => dest.AccommodationName, opt => opt.MapFrom(src => src.Accommodation.Name))
                 .ForMember(dest => dest.AccommodationType, opt => opt.MapFrom(src => src.Accommodation.AccommodationType));
+            #endregion
 
+            #region Client mappings
             CreateMap<ClientEntity, ClientDTO>()
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ReverseMap();
@@ -26,6 +34,7 @@
 
             CreateMap<AddClientRequest, UpdateClientRequest>()
                 .ReverseMap();
+            #endregion
         }
     }
 }
