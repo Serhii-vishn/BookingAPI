@@ -1,6 +1,6 @@
 ﻿namespace BookingAPI.Data.Entities
 {
-    public class UserEntity
+    public class ClientEntity
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = null!;

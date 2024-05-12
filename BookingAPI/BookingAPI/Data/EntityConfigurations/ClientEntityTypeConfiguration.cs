@@ -1,10 +1,10 @@
 ﻿namespace BookingAPI.Data.EntityConfigurations
 {
-    public class UserEntityTypeConfiguration : IEntityTypeConfiguration<UserEntity>
+    public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<ClientEntity>
     {
-        public void Configure(EntityTypeBuilder<UserEntity> builder)
+        public void Configure(EntityTypeBuilder<ClientEntity> builder)
         {
-            builder.ToTable("Users");
+            builder.ToTable("Clients");
 
             builder.HasKey(u => u.Id);
 
@@ -38,8 +38,8 @@
                 .HasMaxLength(30);
 
             builder.HasMany(u => u.Bookings)
-                .WithOne(b => b.User)
-                .HasForeignKey(b => b.UserId)
+                .WithOne(b => b.Client)
+                .HasForeignKey(b => b.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasIndex(u => new { u.LastName, u.FirstName, u.DateOfBirth })
