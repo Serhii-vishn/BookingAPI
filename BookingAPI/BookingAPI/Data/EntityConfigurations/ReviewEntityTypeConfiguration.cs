@@ -23,9 +23,9 @@
                 .HasForeignKey(r => r.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(r => r.Booking) 
+            builder.HasOne(r => r.Accommodation) 
                 .WithMany(b => b.Reviews)
-                .HasForeignKey(r => r.BookingId)
+                .HasForeignKey(r => r.AccommodationId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

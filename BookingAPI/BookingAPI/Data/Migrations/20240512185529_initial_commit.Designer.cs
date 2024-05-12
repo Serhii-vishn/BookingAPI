@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240511220838_initial commit")]
-    partial class initialcommit
+    [Migration("20240512185529_initial_commit")]
+    partial class initial_commit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -164,7 +164,7 @@ namespace BookingAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BookingId")
+                    b.Property<int>("AccommodationId")
                         .HasColumnType("int");
 
                     b.Property<int>("ClientId")
@@ -179,7 +179,7 @@ namespace BookingAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingId");
+                    b.HasIndex("AccommodationId");
 
                     b.HasIndex("ClientId");
 
@@ -207,9 +207,9 @@ namespace BookingAPI.Migrations
 
             modelBuilder.Entity("BookingAPI.Data.Entities.ReviewEntity", b =>
                 {
-                    b.HasOne("BookingAPI.Data.Entities.BookingEntity", "Booking")
+                    b.HasOne("BookingAPI.Data.Entities.AccommodationEntity", "Accommodation")
                         .WithMany("Reviews")
-                        .HasForeignKey("BookingId")
+                        .HasForeignKey("AccommodationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -219,7 +219,7 @@ namespace BookingAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Booking");
+                    b.Navigation("Accommodation");
 
                     b.Navigation("Client");
                 });
@@ -227,10 +227,7 @@ namespace BookingAPI.Migrations
             modelBuilder.Entity("BookingAPI.Data.Entities.AccommodationEntity", b =>
                 {
                     b.Navigation("Bookings");
-                });
 
-            modelBuilder.Entity("BookingAPI.Data.Entities.BookingEntity", b =>
-                {
                     b.Navigation("Reviews");
                 });
 

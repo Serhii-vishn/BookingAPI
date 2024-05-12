@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BookingAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class initialcommit : Migration
+    public partial class initial_commit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,15 +86,15 @@ namespace BookingAPI.Migrations
                     Rating = table.Column<double>(type: "float", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(110)", maxLength: 110, nullable: true),
                     ClientId = table.Column<int>(type: "int", nullable: false),
-                    BookingId = table.Column<int>(type: "int", nullable: false)
+                    AccommodationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reviews", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reviews_Bookings_BookingId",
-                        column: x => x.BookingId,
-                        principalTable: "Bookings",
+                        name: "FK_Reviews_Accommodations_AccommodationId",
+                        column: x => x.AccommodationId,
+                        principalTable: "Accommodations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -140,9 +140,9 @@ namespace BookingAPI.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_BookingId",
+                name: "IX_Reviews_AccommodationId",
                 table: "Reviews",
-                column: "BookingId");
+                column: "AccommodationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_ClientId",
@@ -154,10 +154,10 @@ namespace BookingAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Reviews");
+                name: "Bookings");
 
             migrationBuilder.DropTable(
-                name: "Bookings");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Accommodations");

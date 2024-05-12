@@ -9,7 +9,7 @@
         public int ClientId { get; set; }
         public ClientEntity Client { get; set; } = null!;
 
-        public int BookingId { get; set; }
-        public BookingEntity Booking { get; set; } = null!;
+        public int AccommodationId { get; set; }
+        public AccommodationEntity Accommodation { get; set; } = null!;
     }
 }

@@ -12,5 +12,6 @@
         public string? Description { get; set; }
 
         public IList<BookingEntity> Bookings { get; set; } = new List<BookingEntity>();
+        public IList<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
     }
 }

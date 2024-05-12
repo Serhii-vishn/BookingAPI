@@ -11,7 +11,5 @@
 
         public int AccommodationId { get; set; }
         public AccommodationEntity Accommodation { get; set; } = null!;
-
-        public IList<ReviewEntity> Reviews { get; set; } = new List<ReviewEntity>();
     }
 }
