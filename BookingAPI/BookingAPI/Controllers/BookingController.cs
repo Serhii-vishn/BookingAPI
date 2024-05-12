@@ -39,5 +39,32 @@
                 return StatusCode(500);
             }
         }
+
+        [HttpPost]
+        [Route("/booking")]
+        public async Task<ActionResult> AddBooking([FromForm] AddBookingRequest addBookingRequest)
+        {
+            try
+            {
+                var result = await _bookingService.AddAsync(addBookingRequest);
+                _logger.LogInformation($"Booking with id = {result} was added");
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return StatusCode(500);
+            }
+        }
     }
 }
