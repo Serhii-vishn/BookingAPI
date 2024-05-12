@@ -25,6 +25,15 @@
                 .ReverseMap();
 
             CreateMap<AccommodationEntity, AccommodationListDTO>()
+            .ReverseMap();
+
+            CreateMap<UpdateAccommodationRequest, AccommodationEntity>()
+                .ReverseMap();
+
+            CreateMap<AddAccommodationRequest, AccommodationEntity>()
+                .ReverseMap();
+
+            CreateMap<AddAccommodationRequest, UpdateAccommodationRequest>()
                 .ReverseMap();
             #endregion
 
@@ -37,9 +46,11 @@
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
                 .ReverseMap();
 
-            CreateMap<AddClientRequest, ClientEntity>();
+            CreateMap<AddClientRequest, ClientEntity>()
+                .ReverseMap();
 
-            CreateMap<UpdateClientRequest, ClientEntity>();
+            CreateMap<UpdateClientRequest, ClientEntity>()
+                .ReverseMap();
 
             CreateMap<AddClientRequest, UpdateClientRequest>()
                 .ReverseMap();
