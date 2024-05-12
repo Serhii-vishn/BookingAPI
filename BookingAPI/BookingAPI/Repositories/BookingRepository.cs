@@ -16,17 +16,20 @@
                  .SingleOrDefaultAsync();
         }
 
-        public async Task<IList<BookingEntity>> ListAsync()
+        public async Task<BookingEntity?> GetAllAsync(int id)
         {
             return await _context.Bookings
-                .ToListAsync();
+                 .Where(a => a.Id == id)
+                 .Include(a => a.Accommodation)
+                 .Include(c => c.Client)
+                 .SingleOrDefaultAsync();
         }
 
         public async Task<IList<BookingEntity>> ListAllAsync()
         {
             return await _context.Bookings
                 .Include(c => c.Client)
-                .Include(c => c.Accommodation)
+                .Include(a => a.Accommodation)
                 .ToListAsync();
         }
 
