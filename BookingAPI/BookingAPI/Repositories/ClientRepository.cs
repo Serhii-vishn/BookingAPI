@@ -32,6 +32,15 @@
                 .SingleOrDefaultAsync();
         }
 
+        public async Task<ClientEntity?> GetAllAsync(int id)
+        {
+            return await _context.Clients
+                 .Where(a => a.Id == id)
+                 .Include(b => b.Bookings)
+                 .Include(r => r.Reviews)
+                 .SingleOrDefaultAsync();
+        }
+
         public async Task<IList<ClientEntity>> ListAsync()
         {
             return await _context.Clients

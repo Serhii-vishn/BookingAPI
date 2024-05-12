@@ -11,9 +11,33 @@
             _mapper = mapper;
         }
 
+        public async Task<ClientDTO> GetAsync(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("Invalid client id");
+            }
+
+            var data = await _clientRepository.GetAllAsync(id);
+
+            if (data is null)
+            {
+                throw new NotFoundException($"Client with id = {id} does not exist");
+            }
+
+            return _mapper.Map<ClientDTO>(data);
+        }
+
+        public async Task<IList<ClientListDTO>> ListAsync()
+        {
+            var data = await _clientRepository.ListAsync();
+
+            return _mapper.Map<IList<ClientListDTO>>(data);
+        }
+
         public async Task<int> AddAsync(AddClientRequest client)
         {
-            ValidateTeacher(client);
+            ValidateClient(client);
 
             var data = await _clientRepository.GetAsync(client.PhoneNumber);
             if (data != null)
@@ -29,8 +53,24 @@
 
             return await _clientRepository.AddAsync(_mapper.Map<ClientEntity>(client));
         }
+        
+        public async Task<int> UpdateAsync(UpdateClientRequest client)
+        {
+            ValidateClient(_mapper.Map<AddClientRequest>(client));
 
-        private void ValidateTeacher(AddClientRequest client)
+            await GetAsync(client.Id);
+
+            return await _clientRepository.UpdateAsync(_mapper.Map<ClientEntity>(client));
+        }
+
+        public async Task<int> DeleteAsync(int id)
+        {
+            await GetAsync(id);
+
+            return await _clientRepository.DeleteAsync(id);
+        }
+
+        private void ValidateClient(AddClientRequest client)
         {
             if (client is null)
             {
