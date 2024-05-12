@@ -10,13 +10,28 @@
             #endregion
 
             #region Booking mappings
-            CreateMap<BookingEntity, AddBookingRequest>()
+            CreateMap<BookingEntity, BookingDTO>()
+                .ForMember(dest => dest.ClientFullName, opt => opt.MapFrom(src => $"{src.Client.FirstName} {src.Client.LastName}"))
+                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Client.PhoneNumber))
+                .ForMember(dest => dest.AccommodationName, opt => opt.MapFrom(src => src.Accommodation.Name))
+                .ForMember(dest => dest.AccommodationType, opt => opt.MapFrom(src => src.Accommodation.AccommodationType))
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Accommodation.Address))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Accommodation.Price))
                 .ReverseMap();
 
             CreateMap<BookingEntity, BookingListDTO>()
                 .ForMember(dest => dest.ClientFullName, opt => opt.MapFrom(src => $"{src.Client.FirstName} {src.Client.LastName}"))
                 .ForMember(dest => dest.AccommodationName, opt => opt.MapFrom(src => src.Accommodation.Name))
                 .ForMember(dest => dest.AccommodationType, opt => opt.MapFrom(src => src.Accommodation.AccommodationType));
+
+            CreateMap<AddBookingRequest, BookingEntity>()
+                .ReverseMap();
+
+            CreateMap<UpdateBookingRequest, BookingEntity>()
+                .ReverseMap();
+
+            CreateMap<AddBookingRequest, UpdateBookingRequest>()
+                .ReverseMap();
             #endregion
 
             #region Accomodation mappings

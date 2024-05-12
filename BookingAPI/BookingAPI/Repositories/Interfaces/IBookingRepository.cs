@@ -3,7 +3,7 @@
     public interface IBookingRepository
     {
         Task<BookingEntity?> GetAsync(int id);
-        Task<IList<BookingEntity>> ListAsync();
+        Task<BookingEntity?> GetAllAsync(int id);
         Task<IList<BookingEntity>> ListAllAsync();
         Task<int> AddAsync(BookingEntity booking);
         Task<int> UpdateAsync(BookingEntity booking);

@@ -115,7 +115,7 @@
         /// <returns>ActionResult indicating the result of the operation.</returns>
         [HttpPut]
         [Route("/client")]
-        public async Task<ActionResult> UpdateTeacher([FromForm] UpdateClientRequest updateClientRequest)
+        public async Task<ActionResult> UpdateClient([FromForm] UpdateClientRequest updateClientRequest)
         {
             try
             {

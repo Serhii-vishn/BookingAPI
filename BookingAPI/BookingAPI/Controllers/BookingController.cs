@@ -14,7 +14,7 @@
         }
 
         /// <summary>
-        /// Endpoint for retrieving a specific booking by its ID.
+        /// Endpoint for retrieving booking by its ID.
         /// </summary>
         /// <param name="id">ID of the booking to retrieve.</param>
         /// <returns>DTO containing the booking information.</returns>
@@ -24,9 +24,9 @@
         {
             try
             {
-                // var result = await _bookingService.GetAsync(id);
-                // _logger.LogInformation($"Booking whith id ={id} were received");
-                return Ok();
+                var result = await _bookingService.GetAsync(id);
+                _logger.LogInformation($"Booking whith id ={id} were received");
+                return Ok(result);
             }
             catch (NotFoundException ex)
             {
@@ -53,7 +53,7 @@
         /// <returns>List of bookings.</returns>
         [HttpGet]
         [Route("/bookings")]
-        public async Task<ActionResult> GetBookings(string? filterOn, string? filterQuery) // TODO filter add
+        public async Task<ActionResult> GetBookings()
         {
             try
             {
@@ -91,6 +91,70 @@
             {
                 var result = await _bookingService.AddAsync(addBookingRequest);
                 _logger.LogInformation($"Booking with id = {result} was added");
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return StatusCode(500);
+            }
+        }
+
+        /// <summary>
+        /// Endpoint for updating a booking.
+        /// </summary>
+        /// <param name="updateBookingRequest">Updated booking information.</param>
+        /// <returns>ActionResult indicating the result of the operation.</returns>
+        [HttpPut]
+        [Route("/booking")]
+        public async Task<ActionResult> UpdateBooking([FromForm] UpdateBookingRequest updateBookingRequest)
+        {
+            try
+            {
+                var result = await _bookingService.UpdateAsync(updateBookingRequest);
+                _logger.LogInformation($"Booking with id = {result} was updated");
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return StatusCode(500);
+            }
+        }
+
+        /// <summary>
+        /// Endpoint for deleting a booking by their ID.
+        /// </summary>
+        /// <param name="id">ID of the booking to delete.</param>
+        /// <returns>ID deleted booking</returns>
+        [HttpDelete]
+        [Route("/booking/{id}")]
+        public async Task<ActionResult> DeleteBooking(int id)
+        {
+            try
+            {
+                var result = await _bookingService.DeleteAsync(id);
+                _logger.LogInformation($"Booking whith id ={id} were deleted");
                 return Ok(result);
             }
             catch (NotFoundException ex)
