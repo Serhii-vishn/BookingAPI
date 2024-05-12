@@ -19,6 +19,15 @@
                 .ForMember(dest => dest.AccommodationType, opt => opt.MapFrom(src => src.Accommodation.AccommodationType));
             #endregion
 
+            #region Accomodation mappings
+            CreateMap<AccommodationEntity, AccommodationDTO>()
+                .ForMember(dest => dest.Reviews, opt => opt.MapFrom(src => src.Reviews.ToList()))
+                .ReverseMap();
+
+            CreateMap<AccommodationEntity, AccommodationListDTO>()
+                .ReverseMap();
+            #endregion
+
             #region Client mappings
             CreateMap<ClientEntity, ClientDTO>()
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"))
