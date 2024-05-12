@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace BookingAPI.Controllers
+﻿namespace BookingAPI.Controllers
 {
     [Route("api/[controler]")]
     [ApiController]
