@@ -8,8 +8,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddTransient<IBookingRepository, BookingRepository>();
+builder.Services.AddTransient<IClientRepository, ClientRepository>();
 
 builder.Services.AddTransient<IBookingService, BookingService>();
+builder.Services.AddTransient<IClientService, ClientService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
