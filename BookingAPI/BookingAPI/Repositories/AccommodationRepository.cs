@@ -16,6 +16,22 @@
                 .SingleOrDefaultAsync();
         }
 
+        public async Task<AccommodationEntity?> GetAsync(string name)
+        {
+            return await _context.Accommodations
+                 .Where(a => string.Equals(a.Name, name))
+                 .SingleOrDefaultAsync();
+        }
+
+        public async Task<AccommodationEntity?> GetAsync(string address, string city, string country)
+        {
+            return await _context.Accommodations
+                .Where(a => string.Equals(a.Address, address))
+                .Where(a => string.Equals(a.City, city))
+                .Where(a => string.Equals(a.Country, country))
+                .SingleOrDefaultAsync();
+        }
+
         public async Task<AccommodationEntity?> GetAllAsync(int id)
         {
             return await _context.Accommodations
@@ -31,7 +47,7 @@
                 .ToListAsync();
         }
 
-        public async Task<int> UpdateAsync(AccommodationEntity accommodation)
+        public async Task<int> AddAsync(AccommodationEntity accommodation)
         {
             var transaction = await _context.Database.BeginTransactionAsync();
 
@@ -49,7 +65,7 @@
             }
         }
 
-        public async Task<int> AddAsync(AccommodationEntity accommodation)
+        public async Task<int> UpdateAsync(AccommodationEntity accommodation)
         {
             var transaction = await _context.Database.BeginTransactionAsync();
 
@@ -83,6 +99,6 @@
                 await transaction.RollbackAsync();
                 throw;
             }
-        }     
+        }
     }
 }
