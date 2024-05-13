@@ -2,7 +2,6 @@
 {
     [Route("api/[controler]")]
     [ApiController]
-    [Authorize]
     public class AccommodationController : Controller
     {
         private readonly IAccommodationService _accomodationService;
@@ -23,6 +22,7 @@
         /// <returns>AccomodationDTO containing the accommodation information.</returns>
         [HttpGet]
         [Route("/accommodation/{id}")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> GetAccommodation(int id)
         {
             try
@@ -54,6 +54,7 @@
         /// <returns>AccomodationListDTO containing the list of accommodations.</returns>
         [HttpGet]
         [Route("/accommodations")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> GetAccommodations()
         {
             try
@@ -86,6 +87,7 @@
         /// <returns>ActionResult indicating the result of the operation.</returns>
         [HttpPost]
         [Route("/accommodation")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddAccommodation([FromForm] AddAccommodationRequest addAccommodationRequest)
         {
             try
@@ -123,6 +125,7 @@
         /// </remarks>
         [HttpPost]
         [Route("/accommodation/{id}/add-comment")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> AddBookingReview([FromForm] AddBookingReviewRequest bookingReview, int id)
         {
             try
@@ -155,6 +158,7 @@
         /// <returns>ActionResult indicating the result of the operation.</returns>
         [HttpPut]
         [Route("/accommodation")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> UpdateAccommodation([FromForm] UpdateAccommodationRequest updateAccommodationRequest)
         {
             try
@@ -187,6 +191,7 @@
         /// <returns>ID deleted accommodation</returns>
         [HttpDelete]
         [Route("/accommodation/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteClient(int id)
         {
             try
@@ -220,6 +225,7 @@
         /// <returns>An ActionResult representing the outcome of the operation.</returns>
         [HttpDelete]
         [Route("/accommodation/{accommodationId}/delete-comment/{commentId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteBooking(int accommodationId, int commentId)
         {
             try
