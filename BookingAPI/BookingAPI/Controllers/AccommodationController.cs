@@ -2,6 +2,7 @@
 {
     [Route("api/[controler]")]
     [ApiController]
+    [Authorize]
     public class AccommodationController : Controller
     {
         private readonly IAccommodationService _accomodationService;
