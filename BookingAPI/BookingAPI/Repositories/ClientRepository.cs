@@ -37,6 +37,7 @@
             return await _context.Clients
                  .Where(a => a.Id == id)
                  .Include(b => b.Bookings)
+                    .ThenInclude(a => a.Accommodation)
                  .Include(r => r.Reviews)
                  .SingleOrDefaultAsync();
         }
