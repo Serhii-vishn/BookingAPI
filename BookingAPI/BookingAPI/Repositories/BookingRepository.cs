@@ -16,6 +16,14 @@
                  .SingleOrDefaultAsync();
         }
 
+        public async Task<BookingEntity?> GetAsync(int clientId, int accommodationId)
+        {
+            return await _context.Bookings
+                 .Where(a => a.ClientId == clientId)
+                 .Where(a => a.AccommodationId == accommodationId)
+                 .SingleOrDefaultAsync();
+        }
+
         public async Task<BookingEntity?> GetAllAsync(int id)
         {
             return await _context.Bookings

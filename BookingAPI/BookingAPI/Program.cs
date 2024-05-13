@@ -10,10 +10,12 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddTransient<IBookingRepository, BookingRepository>();
 builder.Services.AddTransient<IClientRepository, ClientRepository>();
 builder.Services.AddTransient<IAccommodationRepository, AccommodationRepository>();
+builder.Services.AddTransient<IReviewRepository, ReviewRepository>();
 
 builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<IClientService, ClientService>();
 builder.Services.AddTransient<IAccommodationService, AccommodationService>();
+builder.Services.AddTransient<IReviewService, ReviewService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
