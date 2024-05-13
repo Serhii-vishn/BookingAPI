@@ -12,7 +12,12 @@
             _authService = authService;
             _logger = logger;
         }
-
+        /// <summary>
+        /// Endpoint to register a new user.
+        /// </summary>
+        /// <param name="registerUser">The request object containing user registration details.</param>
+        /// <returns>An ActionResult representing the outcome of the registration operation.</returns>
+        [HttpPost]
         [HttpPost]
         [Route("/register")]
         public async Task<ActionResult> Register([FromForm] RegisterUserRequest registerUser)
@@ -40,6 +45,11 @@
             }
         }
 
+        /// <summary>
+        /// Endpoint for user login.
+        /// </summary>
+        /// <param name="loginUser">A request object containing the user's login details.</param
+        /// <returns>ActionResult representing the result of the login operation and the JWT token</returns>.
         [HttpPost]
         [Route("/login")]
         public async Task<ActionResult> Login([FromForm] LoginUserRequest loginUser)
