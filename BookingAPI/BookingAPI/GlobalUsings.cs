@@ -1,6 +1,8 @@
 ﻿global using AutoMapper;
 global using System.Text;
 global using System.Text.RegularExpressions;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
 
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -20,5 +22,6 @@ global using BookingAPI.Repositories.Interfaces;
 global using BookingAPI.Services;
 global using BookingAPI.Services.Interfaces;
 global using BookingAPI.Models.DTO;
-global using BookingAPI.Models.Requests;
 global using BookingAPI.Models.Enums;
+global using BookingAPI.Models.Requests;
+global using BookingAPI.Models.Responses;
