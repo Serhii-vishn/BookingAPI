@@ -5,6 +5,12 @@
         public MappingProfile()
         {
             #region Review mappings
+            CreateMap<ReviewDTO, ReviewEntity>()
+                .ReverseMap();
+
+            CreateMap<AddBookingReviewRequest, ReviewEntity>()
+                .ReverseMap();
+
             CreateMap<ReviewEntity, ReviewsListDTO>()
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => $"{src.Client.FirstName} {src.Client.LastName}"));
             #endregion
