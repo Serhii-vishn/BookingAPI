@@ -38,6 +38,7 @@
                  .Where(a => a.Id == id)
                  .Include(b => b.Bookings)
                  .Include(r => r.Reviews)
+                    .ThenInclude(c => c.Client)
                  .SingleOrDefaultAsync();
         }
 
