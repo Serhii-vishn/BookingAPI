@@ -20,6 +20,7 @@
         /// <returns>DTO containing the booking information.</returns>
         [HttpGet]
         [Route("/booking/{id}")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> GetBooking(int id)
         {
             try
@@ -53,6 +54,7 @@
         /// <returns>List of bookings.</returns>
         [HttpGet]
         [Route("/bookings")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> GetBookings()
         {
             try
@@ -85,6 +87,7 @@
         /// <returns>Id of the newly added booking.</returns>
         [HttpPost]
         [Route("/booking")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> AddBooking([FromForm] AddBookingRequest addBookingRequest)
         {
             try
@@ -117,6 +120,7 @@
         /// <returns>ActionResult indicating the result of the operation.</returns>
         [HttpPut]
         [Route("/booking")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> UpdateBooking([FromForm] UpdateBookingRequest updateBookingRequest)
         {
             try
@@ -149,6 +153,7 @@
         /// <returns>ID deleted booking</returns>
         [HttpDelete]
         [Route("/booking/{id}")]
+        [Authorize(Roles = "Client,Admin")]
         public async Task<ActionResult> DeleteBooking(int id)
         {
             try
