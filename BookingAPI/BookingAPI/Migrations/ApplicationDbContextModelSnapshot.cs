@@ -4,7 +4,6 @@ using BookingAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240513011936_Add securing")]
-    partial class Addsecuring
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -215,13 +212,13 @@ namespace BookingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4797ca13-62b8-4c9a-b5c7-d65699a401f5",
+                            Id = "005efbdb-69c9-4e68-9964-390e03fadecb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "20cb846c-e3b5-4f05-a9f5-c567a4efea94",
+                            Id = "844d2bf4-235d-4b26-a53e-1002526a1936",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
