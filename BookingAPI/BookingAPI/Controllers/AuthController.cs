@@ -18,7 +18,6 @@
         /// <param name="registerUser">The request object containing user registration details.</param>
         /// <returns>An ActionResult representing the outcome of the registration operation.</returns>
         [HttpPost]
-        [HttpPost]
         [Route("/register")]
         public async Task<ActionResult> Register([FromForm] RegisterUserRequest registerUser)
         {
